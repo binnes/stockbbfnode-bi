@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/nodejs-12:1-59 AS builder
+FROM registry.access.redhat.com/ubi7/nodejs-12:1-21 AS builder
 
 WORKDIR /opt/app-root/src
 
@@ -7,7 +7,7 @@ COPY . .
 RUN ls -lA && npm install
 RUN npm run build
 
-FROM registry.access.redhat.com/ubi8/nodejs-12:1-59
+FROM registry.access.redhat.com/ubi7/nodejs-12:1-21
 
 COPY --from=builder /opt/app-root/src/dist dist
 COPY --from=builder /opt/app-root/src/public public
